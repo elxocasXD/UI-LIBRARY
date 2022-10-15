@@ -246,7 +246,7 @@ end
 Settings = game:service'HttpService':JSONEncode(readfile(Name))
 end)
 
-local LibName = "Trip Hub"
+local LibName = "Trip Hub Premiun"
 
 function Kavo:ToggleUI()
     if game.CoreGui[LibName].Enabled then
