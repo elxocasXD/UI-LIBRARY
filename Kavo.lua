@@ -49,36 +49,6 @@ function Utility:TweenObject(obj, properties, duration, ...)
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local themes = {
     SchemeColor = Color3.fromRGB(74, 99, 135),
     Background = Color3.fromRGB(36, 37, 43),
@@ -151,12 +121,15 @@ local themeStyles = {
     ElementColor = Color3.fromRGB(32, 32, 38) --buttons
     },
 
-    Sentinel2 = {
+Sentinel2 = {
     SchemeColor = Color3.fromRGB(230, 35, 69), --section
     Background = Color3.fromRGB(36, 37, 43), --fondo
     Header = Color3.fromRGB(28, 29, 34), --tabs
     TextColor = Color3.fromRGB(255,255,255), --text
-    ElementColor = Color3.fromRGB(32, 32, 38) --buttons
+    ElementColor = Color3.fromRGB(32, 32, 38), --buttons
+
+    Rota = Color3.fromRGB(255, 100, 90),
+	Header2 = Color3.fromRGB(255,255,255)
     },
 
 azulclaro = {
@@ -164,7 +137,12 @@ azulclaro = {
     Background = Color3.fromRGB(26, 45, 121), --fondo
     Header = Color3.fromRGB(36, 66, 176), --tabs
     TextColor = Color3.fromRGB(14, 241, 249), --text
-    ElementColor = Color3.fromRGB(38, 66, 177) --buttons 
+    ElementColor = Color3.fromRGB(38, 66, 210), --buttons 
+
+
+--Rota = Color3.fromRGB(36, 66, 176),
+	Rota = Color3.fromRGB(105, 19, 255),
+	Header2 = Color3.fromRGB(38, 66, 180)
     },
 
 Gris = {
@@ -172,7 +150,10 @@ Gris = {
     Background = Color3.fromRGB(18,18,18), --fondo
     Header = Color3.fromRGB(35,35,35), --tabs
     TextColor = Color3.fromRGB(255, 255, 255), --text
-    ElementColor = Color3.fromRGB(25,25,25) --buttons
+    ElementColor = Color3.fromRGB(25,25,25), --buttons
+
+	Rota = Color3.fromRGB(70,70,70),
+	Header2 = Color3.fromRGB(255,255,255)
     },
 
 lila = {
@@ -180,7 +161,10 @@ SchemeColor = Color3.fromRGB(85,40,215), --section
     Background = Color3.fromRGB(36, 37, 43), --fondo
     Header = Color3.fromRGB(28, 29, 34), --tabs
     TextColor = Color3.fromRGB(255,255,255), --text
-    ElementColor = Color3.fromRGB(32, 32, 38) --buttons
+    ElementColor = Color3.fromRGB(32, 32, 38), --buttons
+
+	Rota = Color3.fromRGB(120,120,120),
+	Header2 = Color3.fromRGB(150,40,215)
     },
 
 blue = {
@@ -188,7 +172,10 @@ SchemeColor = Color3.fromRGB(61,136,240,255), --section
     Background = Color3.fromRGB(36, 37, 43), --fondo
     Header = Color3.fromRGB(28, 29, 34), --tabs
     TextColor = Color3.fromRGB(255,255,255), --text
-    ElementColor = Color3.fromRGB(32, 32, 38) --buttons
+    ElementColor = Color3.fromRGB(32, 32, 38), --buttons
+
+	Rota = Color3.fromRGB(1,1,1),
+	Header2 = Color3.fromRGB(1,1,1)
     },
 
 Discord = {
@@ -196,7 +183,10 @@ SchemeColor = Color3.fromRGB(63,135,251,255), --section
     Background = Color3.fromRGB(53,52,63,255), --fondo
     Header = Color3.fromRGB(49,48,54,255), --tabs
     TextColor = Color3.fromRGB(255,255,255), --text
-    ElementColor = Color3.fromRGB(67,66,76,255) --buttons
+    ElementColor = Color3.fromRGB(67,66,76,255), --buttons
+
+	Rota = Color3.fromRGB(165,165,165),
+	Header2 = Color3.fromRGB(63,200,251) 
     },
 
 Spotify = {
@@ -204,28 +194,44 @@ SchemeColor = Color3.fromRGB(28,185,89,255), --section
     Background = Color3.fromRGB(25,24,25,255), --fondo
     Header = Color3.fromRGB(19,18,19,255), --tabs
     TextColor = Color3.fromRGB(255,255,255), --text
-    ElementColor = Color3.fromRGB(40,40,40,255) --buttons
-    },
+    ElementColor = Color3.fromRGB(40,40,40,255), --buttons
+
+	
+
+	Rota = Color3.fromRGB(0,255,0),
+	Header2 = Color3.fromRGB(130,130,130)
+	    },
+
+
+
 
 arceusx = {
 SchemeColor = Color3.fromRGB(254,0,0,255), --section
     Background = Color3.fromRGB(32,32,32,255), --fondo
     Header = Color3.fromRGB(26,26,26,255), --tabs
     TextColor = Color3.fromRGB(255,255,255), --text
-    ElementColor = Color3.fromRGB(40,40,40,255) --buttons
+    ElementColor = Color3.fromRGB(40,40,40,255), --buttons
+
+
+	Rota = Color3.fromRGB(145,145,145),
+	Header2 = Color3.fromRGB(255,0,0)
     },
+
 
 SynapseX = {
 SchemeColor = Color3.fromRGB(50,60,177,255), --section
     Background = Color3.fromRGB(34,35,34,255), --fondo
     Header = Color3.fromRGB(47,47,47,255), --tabs
     TextColor = Color3.fromRGB(255,255,255), --text
-    ElementColor = Color3.fromRGB(70,70,70,255) --buttons
+    ElementColor = Color3.fromRGB(70,70,70,255), --buttons
+
+	Rota = Color3.fromRGB(5,110,255),
+	Header2 = Color3.fromRGB(200,200,200)
     }
 
 }
 
-
+--Library
 
 local oldTheme = ""
 
@@ -234,9 +240,7 @@ local SettingsT = {
 }
 
 local Name = "KavoConfig.JSON"
-if not isfile("KavoConfig.JSON") then
-   writefile(Name) 
-end
+
 pcall(function()
 
 if not pcall(function() readfile(Name) end) then
@@ -295,7 +299,7 @@ elseif themeList == "blue" then
 elseif themeList == "Discord" then
         themeList = themeStyles.Discord
 elseif themeList == "Spotify" then
-        themeList = themeStyles.Spotify
+	    themeList = themeStyles.Spotify
 elseif themeList == "arceusx" then
         themeList = themeStyles.arceusx
 elseif themeList == "SynapseX" then
@@ -312,6 +316,10 @@ elseif themeList == "SynapseX" then
             themeList.TextColor = Color3.fromRGB(255,255,255)
         elseif themeList.ElementColor == nil then
             themeList.ElementColor = Color3.fromRGB(32, 32, 38)
+			        elseif themeList.Header2 == nil then
+            themeList.Header2 = Color3.fromRGB(32, 32, 38)
+			        elseif themeList.Rota == nil then
+            themeList.Rota = Color3.fromRGB(32, 32, 38)
         end
     end
 
@@ -347,6 +355,9 @@ elseif themeList == "SynapseX" then
     local pages = Instance.new("Frame")
     local Pages = Instance.new("Folder")
     local infoContainer = Instance.new("Frame")
+    local top_2 = Instance.new("UIGradient")
+    local tab_2 = Instance.new("UIGradient")
+    local ImageLabel = Instance.new("ImageLabel")
 
     local blurFrame = Instance.new("Frame")
 
@@ -374,6 +385,14 @@ elseif themeList == "SynapseX" then
     Main.Position = UDim2.new(0.336503863, 0, 0.275485456, 0)
     Main.Size = UDim2.new(0, 0, 0, 0)
 
+
+
+
+
+
+	
+
+
 	local script = Instance.new('LocalScript', Main)
 
 	script.Parent.Active = true
@@ -390,18 +409,30 @@ elseif themeList == "SynapseX" then
 
 	
 
-    MainCorner.CornerRadius = UDim.new(0, 4)
+    MainCorner.CornerRadius = UDim.new(0, 6)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
 
     MainHeader.Name = "MainHeader"
     MainHeader.Parent = Main
     MainHeader.BackgroundColor3 = themeList.Header
+
     Objects[MainHeader] = "BackgroundColor3"
-    MainHeader.Size = UDim2.new(0, 525, 0, 29)
-    headerCover.CornerRadius = UDim.new(0, 4)
+    MainHeader.Size = UDim2.new(0, 525, 0, 42)
+
+    headerCover.CornerRadius = UDim.new(0, 1)
     headerCover.Name = "headerCover"
     headerCover.Parent = MainHeader
+
+
+ImageLabel.Parent = MainHeader
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 5.000
+ImageLabel.Position = UDim2.new(0.459047616, 0, -0.119149888, 0)
+ImageLabel.Size = UDim2.new(0, 42, 0, 40)
+ImageLabel.Image = "http://www.roblox.com/asset/?id=9664958625"
+
+
 
     coverup.Name = "coverup"
     coverup.Parent = MainHeader
@@ -446,7 +477,19 @@ elseif themeList == "SynapseX" then
         wait(0.4)
         ScreenGui:Destroy()
     end)
+ 
+top_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, themeList.Header2), ColorSequenceKeypoint.new(1.00, themeList.Rota)}
+top_2.Name = "top"
+top_2.Parent = MainHeader
 
+
+
+
+	local script = Instance.new('LocalScript', top_2)
+
+	game:GetService('RunService').RenderStepped:Connect(function()
+		script.Parent.Rotation = (tick() * 45) % 360;
+		end)
 
 
 
@@ -456,7 +499,7 @@ elseif themeList == "SynapseX" then
     MainSide.BackgroundColor3 = themeList.Header
     Objects[MainSide] = "Header"
     MainSide.Position = UDim2.new(-7.4505806e-09, 0, 0.0911949649, 0)
-    MainSide.Size = UDim2.new(0, 149, 0, 289)
+    MainSide.Size = UDim2.new(0, 158, 0, 289)
 
     sideCorner.CornerRadius = UDim.new(0, 4)
     sideCorner.Name = "sideCorner"
@@ -492,6 +535,21 @@ elseif themeList == "SynapseX" then
     Pages.Name = "Pages"
     Pages.Parent = pages
 
+tab_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, themeList.Header2), ColorSequenceKeypoint.new(1.00, themeList.Rota )}
+tab_2.Name = "tab"
+tab_2.Parent = MainSide
+
+
+	local script = Instance.new('LocalScript', tab_2)
+
+	game:GetService('RunService').RenderStepped:Connect(function()
+		script.Parent.Rotation = (tick() * 26) % 360;
+		end)
+
+
+
+	
+
     infoContainer.Name = "infoContainer"
     infoContainer.Parent = Main
     infoContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -501,7 +559,7 @@ elseif themeList == "SynapseX" then
     infoContainer.Position = UDim2.new(0.299047619, 0, 0.874213815, 0)
     infoContainer.Size = UDim2.new(0, 368, 0, 33)
 
-    
+ 
     coroutine.wrap(function()
         while wait() do
             Main.BackgroundColor3 = themeList.Background
@@ -511,6 +569,10 @@ elseif themeList == "SynapseX" then
             coverup.BackgroundColor3 = themeList.Header
         end
     end)()
+	
+
+
+
 
     function Kavo:ChangeColor(prope,color)
         if prope == "Background" then
@@ -2802,5 +2864,4 @@ elseif themeList == "SynapseX" then
     end  
     return Tabs
 end
-
 return Kavo
