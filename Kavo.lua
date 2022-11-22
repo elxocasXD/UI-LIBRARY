@@ -361,7 +361,7 @@ elseif themeList == "SynapseX" then
 
     local blurFrame = Instance.new("Frame")
 
-    Kavo:DraggingEnabled(MainHeader, Main)
+   -- Kavo:DraggingEnabled(MainHeader, Main)
 
     blurFrame.Name = "blurFrame"
     blurFrame.Parent = pages
@@ -388,15 +388,78 @@ elseif themeList == "SynapseX" then
 
 
 
+local UserInputService = game:GetService("UserInputService")
+local dragging
+local dragInput
+local dragStart
+local startPos
 
+local fr = Main
+
+local function updateChat(input)
+	local delta = input.Position - dragStart
+	local dragTime =  0.005   --0.055
+	local SmoothDrag = {}
+	SmoothDrag.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	local dragSmoothFunction = gsTween:Create(fr, TweenInfo.new(dragTime, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), SmoothDrag)
+	dragSmoothFunction:Play()
+end
+
+
+
+game:GetService("Players").PlayerAdded:connect(function(plr)
+	plr.Chatted:connect(function(chat)
+		CreateChatText(plr, chat)
+	end)
+end)
+
+
+	local script = Instance.new('LocalScript', fr)
+
+	local UIS = game:GetService("UserInputService")
+	function dragify(trasgui)
+		dragToggle = nil
+		local dragSpeed = 0
+		dragInput = nil
+		dragStart = nil
+		local dragPos = nil
+		function updateInput(input)
+			local Delta = input.Position - dragStart
+			local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+			game:GetService("TweenService"):Create(fr, TweenInfo.new(0.30), {Position = Position}):Play()
+		end
+		fr.InputBegan:Connect(function(input)
+			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+				dragToggle = true
+				dragStart = input.Position
+				startPos = fr.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragToggle = false
+					end
+				end)
+			end
+		end)
+		fr.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		game:GetService("UserInputService").InputChanged:Connect(function(input)
+			if input == dragInput and dragToggle then
+				updateInput(input)
+			end
+		end)
+	end
+	dragify(script.Parent)
 
 	
 
 
 	local script = Instance.new('LocalScript', Main)
 
-	script.Parent.Active = true
-	script.Parent.Draggable = true
+	--script.Parent.Active = true
+	--script.Parent.Draggable = true
 	
 	local object = script.Parent
 	
@@ -2864,4 +2927,13 @@ tab_2.Parent = MainSide
     end  
     return Tabs
 end
+
 return Kavo
+
+
+
+
+
+
+
+
