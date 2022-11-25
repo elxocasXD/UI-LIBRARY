@@ -239,16 +239,7 @@ local SettingsT = {
 
 }
 
-local Name = "KavoConfig.JSON"
 
-pcall(function()
-
-if not pcall(function() readfile(Name) end) then
-writefile(Name, game:service'HttpService':JSONEncode(SettingsT))
-end
-
-Settings = game:service'HttpService':JSONEncode(readfile(Name))
-end)
 
 local LibName = "Trip Hub Premiun"
 
@@ -359,6 +350,8 @@ elseif themeList == "SynapseX" then
     local tab_2 = Instance.new("UIGradient")
     local ImageLabel = Instance.new("ImageLabel")
 
+		
+		
     local blurFrame = Instance.new("Frame")
 
    -- Kavo:DraggingEnabled(MainHeader, Main)
@@ -468,8 +461,8 @@ end)
 	
 	wait(0.5) 
 	
-	object:TweenSize(UDim2.new(0, 525, 0, 318))
-
+	object:TweenSize(UDim2.new(0, 525, 0, 359))
+--0, 525, 0, 318
 	
 
     MainCorner.CornerRadius = UDim.new(0, 6)
@@ -562,7 +555,10 @@ top_2.Parent = MainHeader
     MainSide.BackgroundColor3 = themeList.Header
     Objects[MainSide] = "Header"
     MainSide.Position = UDim2.new(-7.4505806e-09, 0, 0.0911949649, 0)
-    MainSide.Size = UDim2.new(0, 158, 0, 289)
+    MainSide.Size = UDim2.new(0, 158, 0, 326)
+--158
+
+
 
     sideCorner.CornerRadius = UDim.new(0, 4)
     sideCorner.Name = "sideCorner"
@@ -574,14 +570,14 @@ top_2.Parent = MainHeader
     Objects[coverup_2] = "Header"
     coverup_2.BorderSizePixel = 0
     coverup_2.Position = UDim2.new(0.949939311, 0, 0, 0)
-    coverup_2.Size = UDim2.new(0, 7, 0, 289)
+    coverup_2.Size = UDim2.new(0, 7, 0, 389)
 
     tabFrames.Name = "tabFrames"
     tabFrames.Parent = MainSide
     tabFrames.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     tabFrames.BackgroundTransparency = 1.000
     tabFrames.Position = UDim2.new(0.0438990258, 0, -0.00066378375, 0)
-    tabFrames.Size = UDim2.new(0, 135, 0, 283)
+    tabFrames.Size = UDim2.new(0, 135, 0, 383)
 
     tabListing.Name = "tabListing"
     tabListing.Parent = tabFrames
@@ -592,8 +588,8 @@ top_2.Parent = MainHeader
     pages.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     pages.BackgroundTransparency = 1.000
     pages.BorderSizePixel = 0
-    pages.Position = UDim2.new(0.299047589, 0, 0.122641519, 0)
-    pages.Size = UDim2.new(0, 360, 0, 269)
+    pages.Position = UDim2.new(0.299047589, 0, 0.112, 0)
+    pages.Size = UDim2.new(0, 360, 0, 309)
 
     Pages.Name = "Pages"
     Pages.Parent = pages
@@ -669,7 +665,7 @@ tab_2.Parent = MainSide
             }):Play()
         end
 
-        page.Name = "Page"
+        page.Name = tabName
         page.Parent = Pages
         page.Active = true
         page.BackgroundColor3 = themeList.Background
@@ -754,6 +750,76 @@ tab_2.Parent = MainSide
             end
         end)()
     
+
+
+
+    local IconLibraryID = "rbxassetid://3926305904"
+    local Level = 1
+
+
+	local NewSearchIcon = Instance.new("ImageButton" or "ImageLabel")
+	NewSearchIcon.Name = "SearchIcon"
+	NewSearchIcon.BackgroundTransparency = 0
+	NewSearchIcon.Image = "rbxassetid://3926305904"
+	NewSearchIcon.ImageRectOffset = Vector2.new(964,324)
+	NewSearchIcon.ImageRectSize = Vector2.new(36,36)
+	NewSearchIcon.Size = UDim2.new(0,16,0,16)
+	NewSearchIcon.Position = UDim2.new(0,2,0,2)
+	NewSearchIcon.ZIndex = Level
+
+	local NewRoundBox = Instance.new("ImageButton" or "ImageLabel")
+	NewRoundBox.BackgroundTransparency = 5
+	NewRoundBox.Image = "rbxassetid://3570695787"
+	NewRoundBox.SliceCenter = Rect.new(100,100,100,100)
+	NewRoundBox.SliceScale = math.clamp((CornerRadius or 5) * 0.01, 0.01, 1)
+	NewRoundBox.ScaleType = Enum.ScaleType.Slice
+	NewRoundBox.ZIndex = Level
+
+
+local NewTextBoxx = Instance.new("TextBox")
+	NewTextBoxx.Text = "Search Script"
+	NewTextBoxx.Font = Enum.Font.Gotham
+	NewTextBoxx.TextColor3 = Color3.fromRGB(255,255,255)
+	NewTextBoxx.BackgroundTransparency = 1
+	NewTextBoxx.TextSize = 12
+	NewTextBoxx.Size = UDim2.new(1,0,1,0)
+	NewTextBoxx.ZIndex = 1
+		
+			
+
+			local SearchBarContainer = NewRoundBox
+			SearchBarContainer.Name = "SearchBar"
+			SearchBarContainer.ImageColor3 = themeList.ElementColor   --Color3.fromRGB(35,35,35)
+			SearchBarContainer.Size = UDim2.new(0.98,0,0,28)
+			SearchBarContainer.Parent = page
+			
+			local SearchBox = NewTextBoxx
+			SearchBox.Name = "SearchInput"
+			SearchBox.Position = UDim2.new(0,20,0,0)
+			SearchBox.Size = UDim2.new(1,-20,1,0)
+			SearchBox.TextTransparency = 0.5
+			SearchBox.TextXAlignment = Enum.TextXAlignment.Left
+			SearchBox.Parent = SearchBarContainer
+			
+	
+
+			SearchBox:GetPropertyChangedSignal("Text"):Connect(function()
+				local NewValue = SearchBox.Text
+				
+				for _, Element in next, page:GetChildren() do
+					if Element:IsA("Frame") then
+						if not string.find(Element.Name:lower(), "label") then
+							if string.find(Element.Name:lower(), NewValue:lower()) then
+								Element.Visible = true
+							else
+								Element.Visible = false
+							end
+						end
+					end
+				end
+			end)
+
+
         function Sections:NewSection(secName, hidden)
             secName = secName or "Section"
             local sectionFunctions = {}
@@ -773,7 +839,7 @@ tab_2.Parent = MainSide
 		sectionHead.Visible = true
 	    end
 
-            sectionFrame.Name = "sectionFrame"
+            sectionFrame.Name = secName
             sectionFrame.Parent = page
             sectionFrame.BackgroundColor3 = themeList.Background--36, 37, 43
             sectionFrame.BorderSizePixel = 0
@@ -1058,6 +1124,8 @@ tab_2.Parent = MainSide
                 end
                 return ButtonFunction
             end
+
+
 
             function Elements:NewTextBox(tname, tTip, callback)
                 tname = tname or "Textbox"
@@ -2877,6 +2945,9 @@ tab_2.Parent = MainSide
                 setcolor({h,s,v})
             end
             
+
+
+
             function Elements:NewLabel(title)
             	local labelFunctions = {}
             	local label = Instance.new("TextLabel")
@@ -2918,22 +2989,15 @@ tab_2.Parent = MainSide
                 	if label.Text ~= "  "..newText then
                 		label.Text = "  "..newText
                 	end
-                end	
+            
+				end
                 return labelFunctions
             end	
             return Elements
         end
         return Sections
-    end  
+	end
     return Tabs
 end
 
 return Kavo
-
-
-
-
-
-
-
-
